@@ -1,4 +1,0 @@
---require ./helpers.ts
---reporter spec
---watch-extensions js
---slow 5000
