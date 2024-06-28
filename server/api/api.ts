@@ -4,7 +4,6 @@ import * as morgan from 'morgan';
 import * as bodyParser from 'body-parser';
 import Routes from './routes/routes';
 import { errorHandlerApi } from './errorHandlerApi';
-import { error } from 'console';
 
 class Api {
 

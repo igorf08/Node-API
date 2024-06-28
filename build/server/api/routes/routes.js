@@ -1,17 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var db = require("../../json/dbUsers.json");
 var Routes = /** @class */ (function () {
     function Routes(app) {
         this.getRoutes(app);
     }
     Routes.prototype.getRoutes = function (app) {
-        app.route("/").get(function (req, res) {
-            res.send("Hello, world.");
-        });
-        app.route("/ola/:nome").get(function (req, res) {
-            var nome = req.params.nome;
-            res.send("Ol\u00E1, ".concat(nome, "."));
-        });
+        app.route("/").get(function (req, res) { return res.send("Hello, world."); });
+        app.route("/api/users/all").get(function (req, res) { return res.json({ db: db }); });
     };
     return Routes;
 }());
