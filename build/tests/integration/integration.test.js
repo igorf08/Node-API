@@ -19,25 +19,27 @@ describe("Integration tests.", function () {
                 .get("/api/users/all")
                 .end(function (error, res) {
                 (0, helpers_1.expect)(res.status).to.equal(200);
+                done(error);
             });
         });
     });
     describe("GET /api/users/:id", function () {
         it("Should return a JSON with a specific user by ID.", function (done) {
             (0, helpers_1.request)(helpers_1.app)
-                .get("/api/users/".concat(1))
+                .get("/api/user/".concat(1))
                 .end(function (error, res) {
                 (0, helpers_1.expect)(res.status).to.equal(200);
+                done(error);
             });
         });
     });
-    describe("POST /api/users/new", function () {
+    describe("POST /api/user/new", function () {
         it("Should create a new user.", function (done) {
             var user = {
                 nome: "Teste",
             };
             (0, helpers_1.request)(helpers_1.app)
-                .post("/api/users/new")
+                .post("/api/user/new")
                 .send(user)
                 .end(function (error, res) {
                 (0, helpers_1.expect)(res.status).to.equal(200);

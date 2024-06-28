@@ -21,25 +21,27 @@ describe("Integration tests.", () => {
         .get("/api/users/all")
         .end((error, res) => {
           expect(res.status).to.equal(200);
+          done(error);
         });
     });
   });
   describe("GET /api/users/:id", () => {
     it("Should return a JSON with a specific user by ID.", (done) => {
       request(app)
-        .get(`/api/users/${1}`)
+        .get(`/api/user/${1}`)
         .end((error, res) => {
           expect(res.status).to.equal(200);
+          done(error);
         });
     });
   });
-  describe("POST /api/users/new", () => {
+  describe("POST /api/user/new", () => {
     it("Should create a new user.", (done) => {
       const user = {
         nome: "Teste",
       };
       request(app)
-        .post(`/api/users/new`)
+        .post(`/api/user/new`)
         .send(user)
         .end((error, res) => {
           expect(res.status).to.equal(200);

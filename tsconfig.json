@@ -15,6 +15,7 @@
   "include": [
     "server/**/*.ts",
     "server/*.ts",
+    "server/**/**/*.ts",
     "tests",
     "tests/unit/config/.mocharc.json",
     "tests/integration/config/.mocharc.json",
