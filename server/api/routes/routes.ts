@@ -1,30 +1,23 @@
 import { Application, Request, Response } from "express";
 import * as db from '../../json/dbUsers.json'
+import UserRoutes from "../../modules/User/routes";
 
-interface IUser {
-  id: number,
-  nome: string,
-  email: string,
-  senha: string
-}
 class Routes {
-  constructor(app: Application) {
+
+  private router: UserRoutes;
+
+  constructor(app:  Application) {
+    this.router = new UserRoutes();
     this.getRoutes(app);
   }
 
   getRoutes(app: Application): void {
-    app.route("/").get((req: Request, res: Response) => res.send("Hello, world."))
-    app.route("/api/users/all").get((req: Request, res: Response) =>   res.json({db}))
-    app.route("/api/user/:id").get((req: Request, res: Response) => {
-      const id = parseInt(req.params.id);
-      const user = (db as IUser[]).find(user => user.id === id);
-
-      if (user) {
-        res.json(user);
-      } else {
-        res.status(404).send({error: `User with id ${id} was not found`});
-      }
-    })
+    app.route("/api/users/all").get(this.router.index)
+    app.route("/api/users/create").post(this.router.create)
+    app.route("/api/users/:id").get(this.router.findOne)
+    app.route("/api/users/:id/update").put(this.router.update)
+    app.route("/api/users/destroy").delete(this.router.destroy)
+    
 }
 }
 
